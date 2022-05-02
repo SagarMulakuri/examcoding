@@ -1,0 +1,38 @@
+// write js code here corresponding to matches.html
+var favouritesarr=JSON.parse(localStorage.getItem("favourites"))||[]
+var schedulearr=JSON.parse(localStorage.getItem("schedule"))||[];
+
+displayData(schedulearr)
+ console.log(mainarr)
+function displayData(data){
+    data.forEach(function(elem,index){
+        var tr=document.createElement("tr")
+        var td1=document.createElement("td")
+        var td2=document.createElement("td")
+        var td3=document.createElement("td")
+        var td4=document.createElement("td")
+        var td5=document.createElement("td")
+        var td6=document.createElement("td")
+
+         td1.innerText=elem.matchnum;
+         td2.innerText=elem.team1;
+         td3.innerText=elem.team2;
+         td4.innerText=elem.dated;
+         td5.innerText=elem.place;
+         td6.innerText="favourites";
+         td6.style.color="black";
+         td6.style.cursor="pointer";
+         td6.addEventListener("click",function(){
+             favourites(elem);
+         })
+         tr.append(td1,td2,td3,td4,td5,td6);
+         console.log(tr)
+         document.querySelector("tbody").append(tr);
+        })
+    }
+    function favourites(elem){
+        favouritesarr.push(elem)
+        console.log(elem)
+        localStorage.setItem("favourites",JSON.stringify(favouritesarr))
+    }
+   
